@@ -1,0 +1,57 @@
+Контрольная работа по информатике мф-71 Селивановский Матвей пр.Молодежный 13б средний уровень сложности
+1 задание
+import pandas as pd
+df_excel = pd.read_excel('Оценки.xlsx')
+print(df_excel.head())
+print(df_excel.sample(5))
+print(df_excel.tail(5))
+a=int(input("напиши ка мне номер строки"))
+df_excel = pd.read_excel('Оценки (2).xlsx',index_col=a)
+print(df_excel)
+Второе задание
+import pandas as pd
+import matplotlib.pyplot as plt
+
+file_path = 'Книга1.xlsx'
+df = pd.read_excel(file_path)
+
+print(df.head())
+
+plt.figure(figsize=(8, 6))
+
+plt.plot(df['x'], df['y'], marker='o', label='Зависимость y от x')
+
+plt.title('График из Excel')
+plt.xlabel('Ось X')
+plt.ylabel('Ось Y')
+plt.legend()
+plt.grid(True)
+
+plt.show()
+III задание
+import numpy as np
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+from matplotlib.colors import LightSource
+
+X = np.linspace(-5, 5, 100)
+Y = np.linspace(-5, 5, 100)
+X_grid , Y_grid = np.meshgrid(X, Y)
+
+Z_grid = np.sin(np.sqrt(X_grid + Y_grid)) * 2 + np.cos(Y_grid) * 1.5
+
+ls = LightSource(azdeg=315, altdeg=45)
+
+shaded_Z = ls.shade(Z_grid, cmap=plt.cm.terrain, vert_exag=0.2, blend_mode='soft')
+
+fig = plt.figure(figsize=(8, 6))
+ax = fig.add_subplot(111, projection='3d')
+
+ax.plot_surface(X_grid, Y_grid, Z_grid, facecolors=shaded_Z, rstride=1, cstride=1)
+
+ax.set_xlabel("X координата")
+ax.set_ylabel("Y координата")
+ax.set_zlabel("Высота (Z)")
+
+plt.show()
+На этом все надеюсь на четверочкуминимум ведь все прекрасно работает
